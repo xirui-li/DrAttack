@@ -1,0 +1,1 @@
+from .ga_attack import GA_SEMANTIC_ADVANCED_PromptAttack as GA_SEMANTIC_ADVANCED_PromptAttack
