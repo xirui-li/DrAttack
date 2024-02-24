@@ -14,11 +14,6 @@ Authors: [Xirui Li](https://xirui-li.github.io/), [Ruochen Wang](https://ruocwan
 
 [[Webpage](https://xirui-li.github.io/DrAttack/)] [[Paper](https://arxiv.org/abs/2311.04205)]
 
-<p align="center">
-    <img src="images/demo_RaR.png" width="100%"> <br>
-  Demonstration of <b>Rephrase and Respond</b> (RaR). 
-</p>
-
 ## 🔍 About DrAttack
 DrAttack is the first prompt-decomposing jailbreak attack. DrAttack includes three key components: (a) `Decomposition' of the original prompt into sub-prompts, (b) `Reconstruction' of these sub-prompts implicitly by in-context learning with semantically similar but harmless reassembling demo, and (c) a `Synonym Search' of sub-prompts, aiming to find sub-prompts' synonyms that maintain the original intent while jailbreaking LLMs.
 
@@ -30,12 +25,12 @@ DrAttack is the first prompt-decomposing jailbreak attack. DrAttack includes thr
 An extensive empirical study across multiple open-source and closed-source LLMs demonstrates that, with a significantly reduced number of queries, DrAttack obtains a substantial gain of success rate over prior SOTA prompt-only attackers. Notably, the success rate of 78.0% on GPT-4 with merely 15 queries surpassed previous art by 33.1%.
 
 <p align="center">
-    <img src="images/Black_box.png" width="50%"> <br>
+    <img src="images/Black_box.png" width="70%"> <br>
   Attack success rate (%) of black-box baselines and DrAttack assessed by human evaluations.
 </p>
 
 <p align="center">
-    <img src="images/White_box.png" width="50%"> <br>
+    <img src="images/White_box.png" width="70%"> <br>
   Attack success rate (%) of white-box baselines and DrAttack assessed by GPT evaluations.
 </p>
 
@@ -46,9 +41,8 @@ For more details, please refer to our [project webpage](https://xirui-li.github.
 - [Installation](#installation)
 - [Models](#models)
 - [Experiments](#experiments)
+- [Automation](#automation)
 - [Demo](#demo)
-- [Reproducibility](#reproducibility)
-- [License](#license)
 - [Citation](#citation)
 
 ## Installation
