@@ -112,7 +112,7 @@ bash joint.sh
 ```
 
 ## Demo
-We include a notebook `demo.ipynb` which provides an example on attacking gpt-3.5-turbo with DrAttack. You can also view this notebook on [Colab](https://colab.research.google.com/drive/1dinZSyP1E4KokSLPcCh1JQFUFsN-WV--?usp=sharing). This notebook uses a minimal implementation of DrAttack so it should be only used to get familiar with the attack algorithm.
+We include a notebook `demo.ipynb` which provides an example on attacking gpt-3.5-turbo with DrAttack. You can also view this notebook on [Colab](https://drive.google.com/file/d/1neLYUNzLLzP57zI_bO3qNrUjjSDQ1xTL/view?usp=sharing). This notebook uses a minimal implementation of DrAttack so it should be only used to get familiar with the attack algorithm.
 
 ## Citation
 If you find this repo useful for your research, please consider citing the paper
