@@ -25,12 +25,12 @@ DrAttack is the first prompt-decomposing jailbreak attack. DrAttack includes thr
 An extensive empirical study across multiple open-source and closed-source LLMs demonstrates that, with a significantly reduced number of queries, DrAttack obtains a substantial gain of success rate over prior SOTA prompt-only attackers. Notably, the success rate of 78.0% on GPT-4 with merely 15 queries surpassed previous art by 33.1%.
 
 <p align="center">
-    <img src="images/Black_box.png" width="70%"> <br>
+    <img src="images/Black_box.png" width="80%"> <br>
   Attack success rate (%) of black-box baselines and DrAttack assessed by human evaluations.
 </p>
 
 <p align="center">
-    <img src="images/White_box.png" width="70%"> <br>
+    <img src="images/White_box.png" width="80%"> <br>
   Attack success rate (%) of white-box baselines and DrAttack assessed by GPT evaluations.
 </p>
 
@@ -59,11 +59,11 @@ Please follow the instructions to download Vicuna-7B or/and LLaMA-2-7B-Chat firs
 
 ```python
     config.model_paths = [
-        "/DIR/vicuna/vicuna-7b-v1.3",
+        "DIR/llm_models/vicuna/vicuna-7b-v1.3",
         ... # more models
     ]
     config.tokenizer_paths = [
-        "/DIR/vicuna/vicuna-7b-v1.3",
+        "DIR/llm_models/vicuna/vicuna-7b-v1.3",
         ... # more tokenizers
     ]
 ```
@@ -77,28 +77,28 @@ The `experiments` folder contains code to reproduce DrAttack attack experiments 
 
 ```bash
 cd launch_scripts
-bash run_gpt.sh gpt-3.5-turbo behaviors
+bash run_gpt.sh gpt-3.5-turbo
 ```
 
 - To run experiments to jailbreak GPT-4, run the following code inside `experiments`:
 
 ```bash
 cd launch_scripts
-bash run_gpt.sh gpt-4 behaviors
+bash run_gpt.sh gpt-4
 ```
 
 - To run experiments to jailbreak llama2-7b, run the following code inside `experiments`:
 
 ```bash
 cd launch_scripts
-bash run_llama2.sh llama2-7b behaviors
+bash run_llama2.sh llama2-7b
 ```
 
 - To run experiments to jailbreak llama2-13b, run the following code inside `experiments`:
 
 ```bash
 cd launch_scripts
-bash run_llama2.sh llama2-13b behaviors
+bash run_llama2.sh llama2-13b
 ```
 ## Automation 
 

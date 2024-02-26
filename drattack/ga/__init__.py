@@ -1,1 +1,1 @@
-from .ga_attack import GA_SEMANTIC_ADVANCED_PromptAttack as GA_SEMANTIC_ADVANCED_PromptAttack
+from .ga_attack import DrAttack_random_search as DrAttack_random_search

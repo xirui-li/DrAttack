@@ -305,10 +305,10 @@ class GPT_automation():
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="")
-    parser.add_argument("--prompt_path", default="/nfs/data/xiruili/llm_attacks/data/advbench/harmful_behaviors.csv", type=str)
+    parser.add_argument("--prompt_path", default="../data/advbench/harmful_behaviors.csv", type=str)
     parser.add_argument("--model", default="gpt-4", type=str)
     parser.add_argument("--generate_mode", default="joint", type=str)
-    parser.add_argument("--save_path", default='/nfs/data/xiruili/llm_attacks/attack_prompt_data/gpt_automated_processing_results/test_2.json', type=str)
+    parser.add_argument("--save_path", default='../attack_prompt_data/gpt_automated_processing_results/test_2.json', type=str)
     parser.add_argument("--offset", default=0, type=int)
     parser.add_argument("--total_number", default=520, type=int)
     args = parser.parse_args()

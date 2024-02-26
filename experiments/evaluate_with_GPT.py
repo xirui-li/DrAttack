@@ -140,6 +140,6 @@ def evaluate(path, mode="short"):
 if __name__ == '__main__':
 
     mode = "short"
-    save_dict = "/nfs/data/xiruili/llm_attacks/experiments/results/attack_on_llama2_20240126-09:46:54.json"
+    save_dict = "/experiments/results/attack_on_llama2_20240126-09:46:54.json"
 
     evaluate(save_dict, mode=mode)

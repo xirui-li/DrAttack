@@ -37,7 +37,7 @@ def predict(model, tokenizer, text, max_length=300):
 
 def main():
     # Path to your downloaded language model
-    model_path = "/nfs/data/xiruili/llm_models/vicuna/Wizard-Vicuna-7B-Uncensored"
+    model_path = "/llm_models/vicuna/Wizard-Vicuna-7B-Uncensored"
 
     # Load model and tokenizer
     model = load_model(model_path)
@@ -51,7 +51,7 @@ def main():
     # Load the JSON data into a Python variable
         generate_data = json.load(file)
 
-    file_name = '/nfs/data/xiruili/llm_attacks/data/advbench/harmful_behaviors.csv'
+    file_name = '/data/advbench/harmful_behaviors.csv'
     keyword = "ASSISTANT:"
 
     with open(file_name, newline='') as csvfile:

@@ -12,7 +12,21 @@ class ModelWorker(object):
 
     def __init__(self, model_path, model_kwargs, tokenizer, conv_template, device):
         
-        if ("gpt" not in model_path) and ("gemini" not in model_path):
+        if "vicuna" in model_path:
+            self.model_name = "vicuna"
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_path,
+                torch_dtype=torch.float16,
+                trust_remote_code=True,
+                **model_kwargs
+            ).to(device).eval()
+            self.tokenizer = tokenizer
+            self.conv_template = conv_template
+            self.tasks = mp.JoinableQueue()
+            self.results = mp.JoinableQueue()
+            self.process = None
+        elif "llama" in model_path:
+            self.model_name = "llama"
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_path,
                 torch_dtype=torch.float16,
@@ -25,6 +39,7 @@ class ModelWorker(object):
             self.results = mp.JoinableQueue()
             self.process = None
         elif "gpt" in model_path:
+            self.model_name = "gpt"
             self.model = GPTAPIWrapper(model = model_path) # gpt-3.5-turbo
             self.tokenizer = lambda x: x
             self.conv_template = "You are a helpful assistant."
@@ -32,6 +47,7 @@ class ModelWorker(object):
             self.results = mp.JoinableQueue()
             self.process = None
         elif "gemini" in model_path:
+            self.model_name = "gemini"
             self.model = GeminiAPIWrapper(model_name = model_path) # gemini
             self.tokenizer = lambda x: x
             self.conv_template = "You are a helpful assistant."
@@ -83,77 +99,60 @@ class ModelWorker(object):
         self.tasks.put((deepcopy(ob), fn, args, kwargs))
         return self
 
-def get_workers(params, eval=False):
+def get_worker(params, eval=False):
 
-    if ('gpt' not in params.model_paths[0]) and ('gemini' not in params.model_paths[0]):
-        tokenizers = []
-        for i in range(len(params.tokenizer_paths)):
-            tokenizer = AutoTokenizer.from_pretrained(
-                params.tokenizer_paths[i],
-                trust_remote_code=True,
-                **params.tokenizer_kwargs[i]
+    if ('gpt' not in params.model_path) and ('gemini' not in params.model_path):
+        tokenizer = AutoTokenizer.from_pretrained(
+            params.tokenizer_path,
+            trust_remote_code=True,
+            **params.tokenizer_kwarg
+        )
+        if 'oasst-sft-6-llama-30b' in params.tokenizer_path:
+            tokenizer.bos_token_id = 1
+            tokenizer.unk_token_id = 0
+        if 'guanaco' in params.tokenizer_path:
+            tokenizer.eos_token_id = 2
+            tokenizer.unk_token_id = 0
+        if 'llama-2' in params.tokenizer_path:
+            tokenizer.pad_token = tokenizer.unk_token
+            tokenizer.padding_side = 'left'
+        if 'falcon' in params.tokenizer_path:
+            tokenizer.padding_side = 'left'
+        if not tokenizer.pad_token:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        print(f"Loaded tokenizer")
+
+        raw_conv_template = get_conversation_template(params.conversation_template)
+
+        if raw_conv_template.name == 'zero_shot':
+            raw_conv_template.roles = tuple(['### ' + r for r in raw_conv_template.roles])
+            raw_conv_template.sep = '\n'
+        elif raw_conv_template.name == 'llama-2':
+            raw_conv_template.sep2 = raw_conv_template.sep2.strip()
+
+        conv_template = raw_conv_template
+        print(f"Loaded conversation template")
+        worker = ModelWorker(
+                params.model_path,
+                params.model_kwarg,
+                tokenizer,
+                conv_template,
+                params.device
             )
-            if 'oasst-sft-6-llama-30b' in params.tokenizer_paths[i]:
-                tokenizer.bos_token_id = 1
-                tokenizer.unk_token_id = 0
-            if 'guanaco' in params.tokenizer_paths[i]:
-                tokenizer.eos_token_id = 2
-                tokenizer.unk_token_id = 0
-            if 'llama-2' in params.tokenizer_paths[i]:
-                tokenizer.pad_token = tokenizer.unk_token
-                tokenizer.padding_side = 'left'
-            if 'falcon' in params.tokenizer_paths[i]:
-                tokenizer.padding_side = 'left'
-            if not tokenizer.pad_token:
-                tokenizer.pad_token = tokenizer.eos_token
-            tokenizers.append(tokenizer)
 
-        print(f"Loaded {len(tokenizers)} tokenizers")
-
-        raw_conv_templates = [
-            get_conversation_template(template)
-            for template in params.conversation_templates
-        ]
-        conv_templates = []
-        for conv in raw_conv_templates:
-            if conv.name == 'zero_shot':
-                conv.roles = tuple(['### ' + r for r in conv.roles])
-                conv.sep = '\n'
-            elif conv.name == 'llama-2':
-                conv.sep2 = conv.sep2.strip()
-            conv_templates.append(conv)
-
-        print(f"Loaded {len(conv_templates)} conversation templates")
-        workers = [
-            ModelWorker(
-                params.model_paths[i],
-                params.model_kwargs[i],
-                tokenizers[i],
-                conv_templates[i],
-                params.devices[i]
-            )
-            for i in range(len(params.model_paths))
-        ]
         if not eval:
-            for worker in workers:
-                worker.start()
+            worker.start()
 
-        num_train_models = getattr(params, 'num_train_models', len(workers))
-        print('Loaded {} train models'.format(num_train_models))
-        print('Loaded {} test models'.format(len(workers) - num_train_models))
+        print('Loaded target LLM model')
     
     else:
-        conv_templates = ["You are a helpful assistant!"]
         tokenizer = [None]
-        workers = [
-        ModelWorker(
-                params.model_paths[i],
+        worker = ModelWorker(
+                params.model_path,
                 None,
                 None,
                 None,
                 None
             )
-            for i in range(len(params.model_paths))
-        ]
-        num_train_models = len(workers)
-    return workers[:num_train_models], workers[num_train_models:]
+    return worker
