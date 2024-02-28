@@ -12,7 +12,7 @@ This repo holds data and code of the paper "[DrAttack: Prompt Decomposition and 
 
 Authors: [Xirui Li](https://xirui-li.github.io/), [Ruochen Wang](https://ruocwang.github.io/), [Minhao Cheng](https://cmhcbb.github.io/), [Tianyi Zhou](https://tianyizhou.github.io/), [Cho-Jui Hsieh](https://web.cs.ucla.edu/~chohsieh/)
 
-[[Webpage](https://xirui-li.github.io/DrAttack/)] [[Paper](https://arxiv.org/abs/2311.04205)]
+[[Webpage](https://xirui-li.github.io/DrAttack/)] [[Paper](https://arxiv.org/abs/2402.16914)]
 
 ## 🔍 About DrAttack
 DrAttack is the first prompt-decomposing jailbreak attack. DrAttack includes three key components: (a) 'Decomposition' of the original prompt into sub-prompts, (b) 'Reconstruction' of these sub-prompts implicitly by in-context learning with semantically similar but harmless reassembling demo, and (c) a 'Synonym Search' of sub-prompts, aiming to find sub-prompts' synonyms that maintain the original intent while jailbreaking LLMs.
