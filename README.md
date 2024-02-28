@@ -117,12 +117,12 @@ We include a notebook `demo.ipynb` which provides an example on attacking gpt-3.
 ## Citation
 If you find this repo useful for your research, please consider citing the paper
 ```
-@misc{deng2023rephrase,
-  title={Rephrase and Respond: Let Large Language Models Ask Better Questions for Themselves}, 
-  author={Yihe Deng and Weitong Zhang and Zixiang Chen and Quanquan Gu},
-  year={2023},
-  eprint={2311.04205},
-  archivePrefix={arXiv},
-  primaryClass={cs.CL}
+@misc{li2024drattack,
+      title={DrAttack: Prompt Decomposition and Reconstruction Makes Powerful LLM Jailbreakers}, 
+      author={Xirui Li and Ruochen Wang and Minhao Cheng and Tianyi Zhou and Cho-Jui Hsieh},
+      year={2024},
+      eprint={2402.16914},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR}
 }
 ```
