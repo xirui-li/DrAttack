@@ -4,11 +4,11 @@
 ![GPT-3.5](https://img.shields.io/badge/Model-GPT--3.5-green)
 ![Gemini-pro](https://img.shields.io/badge/Model-Gemini--pro-green)
 ![Vicuna](https://img.shields.io/badge/Model-Vicuna-green)
-![Llama2-7b](https://img.shields.io/badge/Model-Llama--2--13b--chat-green)
+![Llama2-7b](https://img.shields.io/badge/Model-Llama--2--7b--chat-green)
 ![Llama2-13b](https://img.shields.io/badge/Model-Llama--2--13b--chat-green)
 ![Jailbreak](https://img.shields.io/badge/Task-Jailbreak-red) 
 
-This repo holds data and code of the paper "[DrAttack: Prompt Decomposition and Reconstruction Makes Powerful LLM Jailbreakers](https://arxiv.org/abs/2311.04205)".
+This repo holds data and code of the paper "[DrAttack: Prompt Decomposition and Reconstruction Makes Powerful LLM Jailbreakers](https://arxiv.org/abs/2402.16914)".
 
 Authors: [Xirui Li](https://xirui-li.github.io/), [Ruochen Wang](https://ruocwang.github.io/), [Minhao Cheng](https://cmhcbb.github.io/), [Tianyi Zhou](https://tianyizhou.github.io/), [Cho-Jui Hsieh](https://web.cs.ucla.edu/~chohsieh/)
 
