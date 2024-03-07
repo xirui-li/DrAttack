@@ -34,7 +34,7 @@ An extensive empirical study across multiple open-source and closed-source LLMs 
   Attack success rate (%) of white-box baselines and DrAttack assessed by GPT evaluations.
 </p>
 
-For more details, please refer to our [project webpage](https://xirui-li.github.io/DrAttack/) and our [paper](https://arxiv.org/abs/2311.04205).
+For more details, please refer to our [project webpage](https://xirui-li.github.io/DrAttack/) and our [paper](https://arxiv.org/abs/2402.16914).
 
 ## Table of Contents
 
