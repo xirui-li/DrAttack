@@ -38,12 +38,17 @@ For more details, please refer to our [project webpage](https://xirui-li.github.
 
 ## Table of Contents
 
+- [Updates](#updates)
 - [Installation](#installation)
 - [Models](#models)
 - [Experiments](#experiments)
 - [Automation](#automation)
 - [Demo](#demo)
 - [Citation](#citation)
+
+## Updates
+
+Our paper is mentioned in one __MEDIUM__ blog, [_LLM Jailbreak: Red Teaming with ArtPrompt, Morse Code, and DrAttack_](https://ai.plainenglish.io/llm-jailbreak-comparing-drattack-artprompt-and-morse-code-17acb0f18be8).
 
 ## Installation
 
