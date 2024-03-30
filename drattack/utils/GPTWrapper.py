@@ -7,7 +7,7 @@ openai.api_key = openai_key
 
 # Define a wrapper around the GPT-4 API to match the interface you need.
 class GPTAPIWrapper:
-    def __init__(self, model="gpt-3.5-turbo", max_tokens=30):
+    def __init__(self, model="gpt-3.5-turbo-0613", max_tokens=30):
         
         # Support for attack framework
         self.name = "openai-gpt"

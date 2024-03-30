@@ -153,6 +153,13 @@ class DrAttack_random_search():
         
     def save_visited(self):
 
+        if not os.path.isfile(self.vis_dict_path):
+            # If the file does not exist, create a new one
+            with open(self.vis_dict_path, 'w') as file:
+                # You can change this to any JSON content you desire
+                json_data = {}
+                json.dump(json_data, file, indent=4)
+
         with open(self.vis_dict_path, 'r') as file:
             data = json.load(file)
         data[self.attack_prompt] = self.vis_dict
@@ -546,14 +553,14 @@ class DrAttack_random_search():
 
         for key in self.harmless_mapping_dict:
             harmless_questions = harmless_questions.replace(key.lower(), self.harmless_mapping_dict[key].lower())
-        # import pdb; pdb.set_trace()
+
         prompt = prompt.replace("{questions prefix}", questions_prefix)
         prompt = prompt.replace("{sentence structure}", sentence_structure)
         prompt = prompt.replace("{harmless prompt}", self.harmless_prompt)
         prompt = prompt.replace("{harmful prompt}", self.attack_prompt)
         prompt = prompt.replace("{harmless questions}", harmless_questions)
         prompt = prompt.replace("{harmful questions}", harmful_questions)
-        # import pdb; pdb.set_trace()
+
         if self.noun_wordgame:
             for key, value in self.word_mapping.items():
                 prompt = prompt.replace(key, value.lower())
@@ -568,7 +575,7 @@ class DrAttack_random_search():
                 prompt = prompt.replace(self.sub_words[idx], sub_word)
 
         prompt = prompt.replace("{harmless response}", self.harmless_response)
-        # import pdb; pdb.set_trace()
+
         if self.noun_wordgame:
             return prompt, word_game
         else:
@@ -604,7 +611,7 @@ class DrAttack_random_search():
                     output = model([prompt])
 
                     self.prompt_num += 1
-                # import pdb; pdb.set_trace()
+
                 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
                 promt_tokens = tokenizer.encode(prompt, add_special_tokens=False)
 

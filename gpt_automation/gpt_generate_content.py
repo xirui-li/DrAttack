@@ -293,20 +293,17 @@ class GPT_automation():
                         self.process_harmless(prompt, self.data[prompt]["substitutable"], templates, "harmless")
 
                         print(f'Saving prompt {prompt_id}')
-                        # import pdb; pdb.set_trace()
+
                         self.save_data()
                 else:
                     raise ValueError("Input generation mode not implemented!")
                 
-                # print(f'Saving prompt {prompt_id}')
-                # import pdb; pdb.set_trace()
-                # self.save_data()
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("--prompt_path", default="../data/advbench/harmful_behaviors.csv", type=str)
-    parser.add_argument("--model", default="gpt-4", type=str)
+    parser.add_argument("--model", default="gpt-4-0613", type=str)
     parser.add_argument("--generate_mode", default="joint", type=str)
     parser.add_argument("--save_path", default='../attack_prompt_data/gpt_automated_processing_results/test_2.json', type=str)
     parser.add_argument("--offset", default=0, type=int)

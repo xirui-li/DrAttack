@@ -7,6 +7,6 @@ def get_config():
     
     config = default_config()
 
-    config.vis_dict_path="./experiments/cache/scores_vicuna.json" # to be set
+    config.vis_dict_path="../../experiments/cache/scores_vicuna.json" # to be set
 
     return config

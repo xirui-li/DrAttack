@@ -15,6 +15,11 @@ if [ ! -d "../results" ]; then
     echo "Folder '../results' created."
 else
     echo "Folder '../results' already exists."
+    
+    if [ ! -d "../results/cache" ]; then
+        mkdir "../results/cache"
+        echo "Folder '../results/cache' created."
+    fi
 fi
 # data_offset for starting from a certain point 
 for data_offset in 0
