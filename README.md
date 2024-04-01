@@ -64,11 +64,11 @@ Please follow the instructions to download Vicuna-7B or/and LLaMA-2-7B-Chat firs
 
 ```python
     config.model_paths = [
-        "DIR/llm_models/vicuna/vicuna-7b-v1.3",
+        "/path/to/your/model",
         ... # more models
     ]
     config.tokenizer_paths = [
-        "DIR/llm_models/vicuna/vicuna-7b-v1.3",
+        "/path/to/your/model",
         ... # more tokenizers
     ]
 ```
