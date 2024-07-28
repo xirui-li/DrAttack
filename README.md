@@ -96,7 +96,7 @@ bash run_gpt.sh gpt-4
 
 ```bash
 cd launch_scripts
-bash run_llama2.sh llama2-7b
+bash run_llama2.sh llama2
 ```
 
 - To run experiments to jailbreak llama2-13b, run the following code inside `experiments`:
