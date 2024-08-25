@@ -157,8 +157,18 @@ class GPT_automation():
 
     def load_data(self, file_path):
         if file_path:
-            with open(file_path, 'r') as file:
-                return json.load(file)
+            try:
+                with open(file_path, 'r') as file:
+                    return json.load(file)
+            except FileNotFoundError:
+                    # Handle the case where the file does not exist
+                print(f"File {file_path} not found. Creating an empty JSON file.")
+                # Define an empty dictionary
+                empty_data = {}
+
+                # Write the empty dictionary to a JSON file
+                with open('empty.json', 'w') as json_file:
+                    json.dump(empty_data, json_file, indent=4)
         return {}
 
     def get_chatgpt_response(self, prompt, verbose=True, presence_penalty=0, frequency_penalty=0,
@@ -277,7 +287,7 @@ class GPT_automation():
 
                 elif generate_mode == "joint":
 
-                    # self.process_decomposition(prompt, prompt_id, templates, "decomposition")
+                    self.process_decomposition(prompt, prompt_id, templates, "decomposition")
                     if not self.data[prompt]['substitutable']:
                         parser = DrAttack_prompt_semantic_parser(self.data[prompt]["parsing_tree_dictionary"])
                         parser.process_parsing_tree()
