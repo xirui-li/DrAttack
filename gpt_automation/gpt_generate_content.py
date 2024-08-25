@@ -167,7 +167,7 @@ class GPT_automation():
                 empty_data = {}
 
                 # Write the empty dictionary to a JSON file
-                with open('empty.json', 'w') as json_file:
+                with open(file_path, 'w') as json_file:
                     json.dump(empty_data, json_file, indent=4)
         return {}
 
