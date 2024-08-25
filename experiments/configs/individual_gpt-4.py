@@ -7,7 +7,7 @@ def get_config():
     
     config = default_config()
 
-    config.model_paths="gpt-4-0613"
+    config.model_path="gpt-4-0613"
     config.vis_dict_path="../../experiments/cache/scores_gpt-4.json"
     
     return config
