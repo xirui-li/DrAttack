@@ -80,6 +80,8 @@ class DrAttack_prompt_semantic_parser():
                     self.words_type.append("structure")
                 elif "Adverb" in key:
                     self.words_type.append("structure")
+                elif "Negation" in key:
+                    self.words_type.append("structure")
                 self.words.append(value)
                 self.words_level.append(depth)
             
